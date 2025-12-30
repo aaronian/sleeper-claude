@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Fantasy Football Dashboard</h1>
+        <select id="league-selector">
+            <option value="all">All Leagues</option>
+            <option value="league1">Dynasty Bros</option>
+            <option value="league2">Work League</option>
+            <option value="league3">College Friends</option>
+        </select>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab active" data-tab="current">Current Week</button>
+        <button class="tab" data-tab="season">This Season</button>
+        <button class="tab" data-tab="alltime">All-Time</button>
+    </nav>
+
+    <main>
+        <!-- Current Week Tab -->
+        <section id="current" class="tab-content active">
+            <div class="view-toggle">
+                <button class="toggle-btn active" data-view="simple">Scoreboard</button>
+                <button class="toggle-btn" data-view="detailed">Roster Details</button>
+            </div>
+            <div id="current-matchups"></div>
+        </section>
+
+        <!-- This Season Tab -->
+        <section id="season" class="tab-content">
+            <div id="season-record"></div>
+        </section>
+
+        <!-- All-Time Tab -->
+        <section id="alltime" class="tab-content">
+            <h2>Head-to-Head Records</h2>
+            <div id="alltime-records"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

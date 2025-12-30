@@ -1,0 +1,367 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background-color: #0f0f1a;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: #1a1a2e;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2a2a4a;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#league-selector {
+    background-color: #16213e;
+    color: #e0e0e0;
+    border: 1px solid #2a2a4a;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+#league-selector:hover {
+    border-color: #4a4a6a;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 0;
+    background-color: #1a1a2e;
+    padding: 0 2rem;
+    border-bottom: 1px solid #2a2a4a;
+}
+
+.tab {
+    background: none;
+    border: none;
+    color: #888;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.tab:hover {
+    color: #e0e0e0;
+}
+
+.tab.active {
+    color: #e0e0e0;
+    border-bottom-color: #5c6bc0;
+}
+
+/* Main Content */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* View Toggle */
+.view-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.toggle-btn {
+    background-color: #16213e;
+    color: #888;
+    border: 1px solid #2a2a4a;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+    border-color: #4a4a6a;
+    color: #e0e0e0;
+}
+
+.toggle-btn.active {
+    background-color: #5c6bc0;
+    color: white;
+    border-color: #5c6bc0;
+}
+
+/* Matchup Cards */
+.matchup-card {
+    background-color: #16213e;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #2a2a4a;
+}
+
+.matchup-card .league-name {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.matchup-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.team-name {
+    font-weight: 500;
+}
+
+.team-score {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.team-score.winning {
+    color: #4caf50;
+}
+
+.team-score.losing {
+    color: #f44336;
+}
+
+.vs {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Detailed Roster View */
+.matchup-detailed {
+    display: none;
+}
+
+.matchup-detailed.active {
+    display: block;
+}
+
+.matchup-simple.hidden {
+    display: none;
+}
+
+.roster-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.roster-column h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #2a2a4a;
+}
+
+.roster-column .total-score {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.roster-column .total-score.winning {
+    color: #4caf50;
+}
+
+.roster-column .total-score.losing {
+    color: #f44336;
+}
+
+.player-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+}
+
+.player-row .position {
+    color: #888;
+    width: 35px;
+}
+
+.player-row .name {
+    flex: 1;
+}
+
+.player-row .points {
+    font-weight: 500;
+}
+
+/* Season Record */
+.season-summary {
+    background-color: #16213e;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #2a2a4a;
+}
+
+.season-summary h3 {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.record-display {
+    display: flex;
+    gap: 2rem;
+    align-items: baseline;
+}
+
+.record-big {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.record-big .wins {
+    color: #4caf50;
+}
+
+.record-big .losses {
+    color: #f44336;
+}
+
+.points-summary {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.week-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #2a2a4a;
+}
+
+.week-row:last-child {
+    border-bottom: none;
+}
+
+.week-num {
+    color: #888;
+    width: 60px;
+}
+
+.week-result {
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+}
+
+.week-result.win {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+}
+
+.week-result.loss {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+}
+
+.week-score {
+    font-weight: 500;
+}
+
+.week-opponent {
+    color: #888;
+    text-align: right;
+    flex: 1;
+    margin-left: 1rem;
+}
+
+/* All-Time Records */
+#alltime h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.rival-card {
+    background-color: #16213e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #2a2a4a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rival-name {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.rival-record {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rival-record .record {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.rival-record .wins {
+    color: #4caf50;
+}
+
+.rival-record .losses {
+    color: #f44336;
+}
+
+.rival-record .winrate {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.rival-card.dominating {
+    border-left: 3px solid #4caf50;
+}
+
+.rival-card.struggling {
+    border-left: 3px solid #f44336;
+}
+
+.rival-card.even {
+    border-left: 3px solid #ff9800;
+}
