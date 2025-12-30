@@ -1,247 +1,300 @@
 // ============================================
-// MOCK DATA - Replace with Sleeper API calls
+// CONFIGURATION
 // ============================================
 
-const mockData = {
-    leagues: [
-        { id: 'league1', name: 'Dynasty Bros' },
-        { id: 'league2', name: 'Work League' },
-        { id: 'league3', name: 'College Friends' }
-    ],
-
-    currentWeek: 14,
-
-    // Current matchups by league
-    currentMatchups: {
-        league1: {
-            myTeam: 'Mahomes & Dreams',
-            myScore: 142.5,
-            opponent: 'CMC Express',
-            oppScore: 128.3,
-            myRoster: [
-                { pos: 'QB', name: 'P. Mahomes', points: 24.5 },
-                { pos: 'RB', name: 'B. Robinson', points: 18.2 },
-                { pos: 'RB', name: 'J. Jacobs', points: 14.8 },
-                { pos: 'WR', name: 'J. Chase', points: 22.1 },
-                { pos: 'WR', name: 'A. Brown', points: 16.4 },
-                { pos: 'TE', name: 'T. Kelce', points: 12.3 },
-                { pos: 'FLEX', name: 'D. London', points: 19.2 },
-                { pos: 'K', name: 'H. Butker', points: 8.0 },
-                { pos: 'DEF', name: 'Cowboys', points: 7.0 }
-            ],
-            oppRoster: [
-                { pos: 'QB', name: 'J. Allen', points: 21.2 },
-                { pos: 'RB', name: 'C. McCaffrey', points: 24.5 },
-                { pos: 'RB', name: 'T. Pollard', points: 11.3 },
-                { pos: 'WR', name: 'T. Hill', points: 18.6 },
-                { pos: 'WR', name: 'D. Adams', points: 14.2 },
-                { pos: 'TE', name: 'D. Goedert', points: 8.4 },
-                { pos: 'FLEX', name: 'J. Addison', points: 12.1 },
-                { pos: 'K', name: 'J. Tucker', points: 11.0 },
-                { pos: 'DEF', name: 'Browns', points: 7.0 }
-            ]
-        },
-        league2: {
-            myTeam: 'Office Champions',
-            myScore: 98.4,
-            opponent: 'HR Nightmare',
-            oppScore: 112.7,
-            myRoster: [
-                { pos: 'QB', name: 'L. Jackson', points: 19.8 },
-                { pos: 'RB', name: 'A. Ekeler', points: 8.2 },
-                { pos: 'RB', name: 'R. Stevenson', points: 12.4 },
-                { pos: 'WR', name: 'S. Diggs', points: 11.3 },
-                { pos: 'WR', name: 'C. Olave', points: 14.6 },
-                { pos: 'TE', name: 'D. Waller', points: 6.2 },
-                { pos: 'FLEX', name: 'T. Etienne', points: 10.9 },
-                { pos: 'K', name: 'T. Bass', points: 7.0 },
-                { pos: 'DEF', name: 'Ravens', points: 8.0 }
-            ],
-            oppRoster: [
-                { pos: 'QB', name: 'J. Hurts', points: 26.4 },
-                { pos: 'RB', name: 'S. Barkley', points: 21.2 },
-                { pos: 'RB', name: 'D. Swift', points: 13.8 },
-                { pos: 'WR', name: 'A. St. Brown', points: 15.4 },
-                { pos: 'WR', name: 'G. Wilson', points: 9.2 },
-                { pos: 'TE', name: 'M. Andrews', points: 8.7 },
-                { pos: 'FLEX', name: 'D. Moore', points: 6.0 },
-                { pos: 'K', name: 'B. McManus', points: 5.0 },
-                { pos: 'DEF', name: 'Eagles', points: 7.0 }
-            ]
-        },
-        league3: {
-            myTeam: 'Dorm Room Dynasty',
-            myScore: 156.2,
-            opponent: 'Beer Pong Champs',
-            oppScore: 134.8,
-            myRoster: [
-                { pos: 'QB', name: 'J. Burrow', points: 28.4 },
-                { pos: 'RB', name: 'A. Kamara', points: 22.1 },
-                { pos: 'RB', name: 'N. Chubb', points: 16.8 },
-                { pos: 'WR', name: 'J. Jefferson', points: 31.2 },
-                { pos: 'WR', name: 'D. Samuel', points: 18.4 },
-                { pos: 'TE', name: 'S. LaPorta', points: 14.2 },
-                { pos: 'FLEX', name: 'C. Lamb', points: 12.1 },
-                { pos: 'K', name: 'J. Elliott', points: 6.0 },
-                { pos: 'DEF', name: '49ers', points: 7.0 }
-            ],
-            oppRoster: [
-                { pos: 'QB', name: 'T. Lawrence', points: 18.2 },
-                { pos: 'RB', name: 'J. Taylor', points: 19.4 },
-                { pos: 'RB', name: 'D. Henry', points: 22.8 },
-                { pos: 'WR', name: 'M. Evans', points: 16.2 },
-                { pos: 'WR', name: 'K. Allen', points: 14.4 },
-                { pos: 'TE', name: 'P. Freiermuth', points: 7.8 },
-                { pos: 'FLEX', name: 'C. Kirk', points: 18.0 },
-                { pos: 'K', name: 'C. Boswell', points: 9.0 },
-                { pos: 'DEF', name: 'Jets', points: 9.0 }
-            ]
-        }
-    },
-
-    // Season records by league
-    seasonRecords: {
-        league1: {
-            wins: 10,
-            losses: 3,
-            pointsFor: 1842.5,
-            pointsAgainst: 1654.2,
-            weeks: [
-                { week: 1, result: 'W', score: 145.2, oppScore: 128.4, opponent: 'Team Burrow' },
-                { week: 2, result: 'W', score: 138.6, oppScore: 122.1, opponent: 'Kelce Connection' },
-                { week: 3, result: 'L', score: 112.4, oppScore: 156.8, opponent: 'CMC Express' },
-                { week: 4, result: 'W', score: 156.2, oppScore: 134.5, opponent: 'Hurts So Good' },
-                { week: 5, result: 'W', score: 142.8, oppScore: 118.2, opponent: 'Tank for Tucker' },
-                { week: 6, result: 'W', score: 128.4, oppScore: 124.6, opponent: 'Jefferson Airplane' },
-                { week: 7, result: 'L', score: 98.2, oppScore: 142.8, opponent: 'Allen Wrenches' },
-                { week: 8, result: 'W', score: 162.4, oppScore: 128.9, opponent: 'Chubb Hub' },
-                { week: 9, result: 'W', score: 134.6, oppScore: 112.4, opponent: 'Team Burrow' },
-                { week: 10, result: 'W', score: 148.2, oppScore: 138.6, opponent: 'Kelce Connection' },
-                { week: 11, result: 'L', score: 118.4, oppScore: 132.8, opponent: 'CMC Express' },
-                { week: 12, result: 'W', score: 152.6, oppScore: 128.4, opponent: 'Hurts So Good' },
-                { week: 13, result: 'W', score: 146.8, oppScore: 108.2, opponent: 'Tank for Tucker' }
-            ]
-        },
-        league2: {
-            wins: 7,
-            losses: 6,
-            pointsFor: 1524.8,
-            pointsAgainst: 1542.6,
-            weeks: [
-                { week: 1, result: 'L', score: 108.4, oppScore: 124.6, opponent: 'Boss Mode' },
-                { week: 2, result: 'W', score: 132.4, oppScore: 118.2, opponent: 'HR Nightmare' },
-                { week: 3, result: 'W', score: 118.6, oppScore: 98.4, opponent: 'IT Crowd' },
-                { week: 4, result: 'L', score: 102.8, oppScore: 142.6, opponent: 'Marketing Mavens' },
-                { week: 5, result: 'W', score: 124.2, oppScore: 112.8, opponent: 'Sales Force' },
-                { week: 6, result: 'W', score: 138.4, oppScore: 124.2, opponent: 'Accounting Aces' },
-                { week: 7, result: 'L', score: 96.8, oppScore: 128.4, opponent: 'Boss Mode' },
-                { week: 8, result: 'W', score: 142.6, oppScore: 116.8, opponent: 'HR Nightmare' },
-                { week: 9, result: 'L', score: 108.2, oppScore: 124.6, opponent: 'IT Crowd' },
-                { week: 10, result: 'W', score: 128.4, oppScore: 118.2, opponent: 'Marketing Mavens' },
-                { week: 11, result: 'L', score: 112.6, oppScore: 138.4, opponent: 'Sales Force' },
-                { week: 12, result: 'W', score: 118.8, oppScore: 102.4, opponent: 'Accounting Aces' },
-                { week: 13, result: 'L', score: 92.6, oppScore: 134.8, opponent: 'Boss Mode' }
-            ]
-        },
-        league3: {
-            wins: 9,
-            losses: 4,
-            pointsFor: 1728.4,
-            pointsAgainst: 1586.2,
-            weeks: [
-                { week: 1, result: 'W', score: 142.6, oppScore: 118.4, opponent: 'Frat House' },
-                { week: 2, result: 'W', score: 156.8, oppScore: 132.2, opponent: 'Beer Pong Champs' },
-                { week: 3, result: 'W', score: 128.4, oppScore: 112.6, opponent: 'Study Hall' },
-                { week: 4, result: 'L', score: 108.2, oppScore: 148.4, opponent: 'Ramen Noodles' },
-                { week: 5, result: 'W', score: 138.6, oppScore: 124.8, opponent: 'Late Night Crew' },
-                { week: 6, result: 'W', score: 152.4, oppScore: 128.6, opponent: 'Frat House' },
-                { week: 7, result: 'L', score: 118.2, oppScore: 142.4, opponent: 'Beer Pong Champs' },
-                { week: 8, result: 'W', score: 146.8, oppScore: 112.8, opponent: 'Study Hall' },
-                { week: 9, result: 'W', score: 134.2, oppScore: 128.4, opponent: 'Ramen Noodles' },
-                { week: 10, result: 'L', score: 112.4, oppScore: 138.6, opponent: 'Late Night Crew' },
-                { week: 11, result: 'W', score: 158.4, oppScore: 124.2, opponent: 'Frat House' },
-                { week: 12, result: 'L', score: 98.6, oppScore: 132.8, opponent: 'Beer Pong Champs' },
-                { week: 13, result: 'W', score: 132.8, oppScore: 122.4, opponent: 'Study Hall' }
-            ]
-        }
-    },
-
-    // All-time head-to-head records
-    allTimeRecords: [
-        { opponent: 'CMC Express', wins: 8, losses: 12, leagues: ['Dynasty Bros'] },
-        { opponent: 'Beer Pong Champs', wins: 14, losses: 10, leagues: ['College Friends'] },
-        { opponent: 'Boss Mode', wins: 6, losses: 14, leagues: ['Work League'] },
-        { opponent: 'Team Burrow', wins: 11, losses: 7, leagues: ['Dynasty Bros'] },
-        { opponent: 'Frat House', wins: 16, losses: 8, leagues: ['College Friends'] },
-        { opponent: 'HR Nightmare', wins: 10, losses: 10, leagues: ['Work League'] },
-        { opponent: 'Kelce Connection', wins: 12, losses: 6, leagues: ['Dynasty Bros'] },
-        { opponent: 'IT Crowd', wins: 8, losses: 8, leagues: ['Work League'] },
-        { opponent: 'Study Hall', wins: 18, losses: 4, leagues: ['College Friends'] }
-    ]
+const CONFIG = {
+    username: 'tcbx1000',
+    // Will auto-detect season from NFL state
 };
+
+// ============================================
+// API FUNCTIONS
+// ============================================
+
+const API_BASE = 'https://api.sleeper.app/v1';
+
+async function fetchJSON(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`API error: ${response.status}`);
+    return response.json();
+}
+
+async function getUser(username) {
+    return fetchJSON(`${API_BASE}/user/${username}`);
+}
+
+async function getNFLState() {
+    return fetchJSON(`${API_BASE}/state/nfl`);
+}
+
+async function getUserLeagues(userId, season) {
+    return fetchJSON(`${API_BASE}/user/${userId}/leagues/nfl/${season}`);
+}
+
+async function getLeagueUsers(leagueId) {
+    return fetchJSON(`${API_BASE}/league/${leagueId}/users`);
+}
+
+async function getLeagueRosters(leagueId) {
+    return fetchJSON(`${API_BASE}/league/${leagueId}/rosters`);
+}
+
+async function getLeagueMatchups(leagueId, week) {
+    return fetchJSON(`${API_BASE}/league/${leagueId}/matchups/${week}`);
+}
+
+async function getLeague(leagueId) {
+    return fetchJSON(`${API_BASE}/league/${leagueId}`);
+}
+
+// Player names - fetch once and cache
+let playersCache = null;
+async function getPlayers() {
+    if (playersCache) return playersCache;
+    // This is a large file (~7MB), so we cache it
+    playersCache = await fetchJSON(`${API_BASE}/players/nfl`);
+    return playersCache;
+}
 
 // ============================================
 // APP STATE
 // ============================================
 
-let currentView = 'simple'; // 'simple' or 'detailed'
-let selectedLeague = 'all';
+let appState = {
+    user: null,
+    leagues: [],
+    leagueData: {}, // { leagueId: { users, rosters, matchups, league } }
+    nflState: null,
+    players: null,
+    currentView: 'simple',
+    selectedLeague: 'all',
+    loading: true,
+    error: null
+};
+
+// ============================================
+// DATA LOADING
+// ============================================
+
+async function loadAllData() {
+    try {
+        showLoading('Loading your data...');
+
+        // Get NFL state and user in parallel
+        const [nflState, user] = await Promise.all([
+            getNFLState(),
+            getUser(CONFIG.username)
+        ]);
+
+        appState.nflState = nflState;
+        appState.user = user;
+
+        // Use previous_season if current season leagues aren't available yet
+        const season = nflState.previous_season;
+        showLoading(`Loading ${season} leagues...`);
+
+        // Get user's leagues
+        const leagues = await getUserLeagues(user.user_id, season);
+        appState.leagues = leagues;
+
+        // Update league selector
+        updateLeagueSelector(leagues);
+
+        // Load data for each league in parallel
+        showLoading('Loading league details...');
+        await Promise.all(leagues.map(league => loadLeagueData(league)));
+
+        // Load players (for player names)
+        showLoading('Loading player data...');
+        appState.players = await getPlayers();
+
+        appState.loading = false;
+        renderAll();
+
+    } catch (error) {
+        console.error('Failed to load data:', error);
+        appState.error = error.message;
+        showError(error.message);
+    }
+}
+
+async function loadLeagueData(league) {
+    const leagueId = league.league_id;
+
+    // Get league details, users, rosters in parallel
+    const [leagueInfo, users, rosters] = await Promise.all([
+        getLeague(leagueId),
+        getLeagueUsers(leagueId),
+        getLeagueRosters(leagueId)
+    ]);
+
+    // Find current/last week
+    const lastWeek = leagueInfo.settings?.last_scored_leg || appState.nflState.week;
+
+    // Get matchups for current week
+    const currentMatchups = await getLeagueMatchups(leagueId, lastWeek);
+
+    // Get all weeks for season record
+    const allMatchups = {};
+    const weekPromises = [];
+    for (let week = 1; week <= lastWeek; week++) {
+        weekPromises.push(
+            getLeagueMatchups(leagueId, week).then(m => {
+                allMatchups[week] = m;
+            })
+        );
+    }
+    await Promise.all(weekPromises);
+
+    appState.leagueData[leagueId] = {
+        league: leagueInfo,
+        users,
+        rosters,
+        currentMatchups,
+        allMatchups,
+        currentWeek: lastWeek
+    };
+}
+
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
+
+function getMyRoster(leagueId) {
+    const data = appState.leagueData[leagueId];
+    if (!data) return null;
+    return data.rosters.find(r => r.owner_id === appState.user.user_id);
+}
+
+function getRosterOwner(leagueId, rosterId) {
+    const data = appState.leagueData[leagueId];
+    if (!data) return { display_name: 'Unknown', team_name: null };
+
+    const roster = data.rosters.find(r => r.roster_id === rosterId);
+    if (!roster) return { display_name: 'Unknown', team_name: null };
+
+    const user = data.users.find(u => u.user_id === roster.owner_id);
+    if (!user) return { display_name: 'Unknown', team_name: null };
+
+    return {
+        display_name: user.display_name,
+        team_name: user.metadata?.team_name || user.display_name
+    };
+}
+
+function getPlayerName(playerId) {
+    if (!appState.players) return playerId;
+
+    // Handle defense (3-letter codes like "PHI", "BUF")
+    if (playerId.length <= 3 && isNaN(playerId)) {
+        return `${playerId} DEF`;
+    }
+
+    const player = appState.players[playerId];
+    if (!player) return playerId;
+
+    return `${player.first_name?.[0] || ''}. ${player.last_name || playerId}`;
+}
+
+function getPlayerPosition(playerId) {
+    if (!appState.players) return '';
+    if (playerId.length <= 3 && isNaN(playerId)) return 'DEF';
+
+    const player = appState.players[playerId];
+    return player?.position || '';
+}
+
+function getOpponentMatchup(matchups, myMatchupId, myRosterId) {
+    return matchups.find(m =>
+        m.matchup_id === myMatchupId && m.roster_id !== myRosterId
+    );
+}
 
 // ============================================
 // RENDER FUNCTIONS
 // ============================================
 
+function showLoading(message) {
+    document.getElementById('current-matchups').innerHTML = `
+        <div class="loading">${message}</div>
+    `;
+}
+
+function showError(message) {
+    document.getElementById('current-matchups').innerHTML = `
+        <div class="error">Error: ${message}</div>
+    `;
+}
+
+function updateLeagueSelector(leagues) {
+    const selector = document.getElementById('league-selector');
+    selector.innerHTML = '<option value="all">All Leagues</option>';
+    leagues.forEach(league => {
+        selector.innerHTML += `<option value="${league.league_id}">${league.name}</option>`;
+    });
+}
+
+function renderAll() {
+    renderCurrentMatchups();
+    renderSeasonRecord();
+    renderAllTimeRecords();
+}
+
 function renderCurrentMatchups() {
     const container = document.getElementById('current-matchups');
-    const leagues = selectedLeague === 'all'
-        ? mockData.leagues
-        : mockData.leagues.filter(l => l.id === selectedLeague);
+
+    const leagues = appState.selectedLeague === 'all'
+        ? appState.leagues
+        : appState.leagues.filter(l => l.league_id === appState.selectedLeague);
 
     let html = '';
 
     leagues.forEach(league => {
-        const matchup = mockData.currentMatchups[league.id];
-        if (!matchup) return;
+        const leagueId = league.league_id;
+        const data = appState.leagueData[leagueId];
+        if (!data) return;
 
-        const isWinning = matchup.myScore > matchup.oppScore;
+        const myRoster = getMyRoster(leagueId);
+        if (!myRoster) return;
+
+        const myMatchup = data.currentMatchups.find(m => m.roster_id === myRoster.roster_id);
+        if (!myMatchup) return;
+
+        const oppMatchup = getOpponentMatchup(data.currentMatchups, myMatchup.matchup_id, myRoster.roster_id);
+        if (!oppMatchup) return;
+
+        const myOwner = getRosterOwner(leagueId, myRoster.roster_id);
+        const oppOwner = getRosterOwner(leagueId, oppMatchup.roster_id);
+
+        const myScore = myMatchup.points || 0;
+        const oppScore = oppMatchup.points || 0;
+        const isWinning = myScore > oppScore;
 
         html += `
             <div class="matchup-card">
-                <div class="league-name">${league.name} - Week ${mockData.currentWeek}</div>
+                <div class="league-name">${league.name} - Week ${data.currentWeek}</div>
 
-                <div class="matchup-simple ${currentView === 'detailed' ? 'hidden' : ''}">
+                <div class="matchup-simple ${appState.currentView === 'detailed' ? 'hidden' : ''}">
                     <div class="team">
-                        <span class="team-name">${matchup.myTeam}</span>
-                        <span class="team-score ${isWinning ? 'winning' : 'losing'}">${matchup.myScore}</span>
+                        <span class="team-name">${myOwner.team_name}</span>
+                        <span class="team-score ${isWinning ? 'winning' : 'losing'}">${myScore.toFixed(2)}</span>
                     </div>
                     <span class="vs">vs</span>
                     <div class="team">
-                        <span class="team-score ${!isWinning ? 'winning' : 'losing'}">${matchup.oppScore}</span>
-                        <span class="team-name">${matchup.opponent}</span>
+                        <span class="team-score ${!isWinning ? 'winning' : 'losing'}">${oppScore.toFixed(2)}</span>
+                        <span class="team-name">${oppOwner.team_name}</span>
                     </div>
                 </div>
 
-                <div class="matchup-detailed ${currentView === 'detailed' ? 'active' : ''}">
+                <div class="matchup-detailed ${appState.currentView === 'detailed' ? 'active' : ''}">
                     <div class="roster-grid">
                         <div class="roster-column">
-                            <h3>${matchup.myTeam} <span class="total-score ${isWinning ? 'winning' : 'losing'}">${matchup.myScore}</span></h3>
-                            ${matchup.myRoster.map(p => `
-                                <div class="player-row">
-                                    <span class="position">${p.pos}</span>
-                                    <span class="name">${p.name}</span>
-                                    <span class="points">${p.points}</span>
-                                </div>
-                            `).join('')}
+                            <h3>${myOwner.team_name} <span class="total-score ${isWinning ? 'winning' : 'losing'}">${myScore.toFixed(2)}</span></h3>
+                            ${renderStartersList(myMatchup)}
                         </div>
                         <div class="roster-column">
-                            <h3>${matchup.opponent} <span class="total-score ${!isWinning ? 'winning' : 'losing'}">${matchup.oppScore}</span></h3>
-                            ${matchup.oppRoster.map(p => `
-                                <div class="player-row">
-                                    <span class="position">${p.pos}</span>
-                                    <span class="name">${p.name}</span>
-                                    <span class="points">${p.points}</span>
-                                </div>
-                            `).join('')}
+                            <h3>${oppOwner.team_name} <span class="total-score ${!isWinning ? 'winning' : 'losing'}">${oppScore.toFixed(2)}</span></h3>
+                            ${renderStartersList(oppMatchup)}
                         </div>
                     </div>
                 </div>
@@ -249,39 +302,92 @@ function renderCurrentMatchups() {
         `;
     });
 
-    container.innerHTML = html;
+    container.innerHTML = html || '<div class="no-data">No matchups found</div>';
+}
+
+function renderStartersList(matchup) {
+    if (!matchup.starters || !matchup.starters_points) return '';
+
+    return matchup.starters.map((playerId, idx) => {
+        const points = matchup.starters_points[idx] || 0;
+        const pos = getPlayerPosition(playerId);
+        const name = getPlayerName(playerId);
+
+        return `
+            <div class="player-row">
+                <span class="position">${pos}</span>
+                <span class="name">${name}</span>
+                <span class="points">${points.toFixed(1)}</span>
+            </div>
+        `;
+    }).join('');
 }
 
 function renderSeasonRecord() {
     const container = document.getElementById('season-record');
-    const leagues = selectedLeague === 'all'
-        ? mockData.leagues
-        : mockData.leagues.filter(l => l.id === selectedLeague);
+
+    const leagues = appState.selectedLeague === 'all'
+        ? appState.leagues
+        : appState.leagues.filter(l => l.league_id === appState.selectedLeague);
 
     let html = '';
 
     leagues.forEach(league => {
-        const record = mockData.seasonRecords[league.id];
-        if (!record) return;
+        const leagueId = league.league_id;
+        const data = appState.leagueData[leagueId];
+        if (!data) return;
+
+        const myRoster = getMyRoster(leagueId);
+        if (!myRoster) return;
+
+        const wins = myRoster.settings?.wins || 0;
+        const losses = myRoster.settings?.losses || 0;
+        const pointsFor = (myRoster.settings?.fpts || 0) + ((myRoster.settings?.fpts_decimal || 0) / 100);
+        const pointsAgainst = (myRoster.settings?.fpts_against || 0) + ((myRoster.settings?.fpts_against_decimal || 0) / 100);
+
+        // Build week-by-week from allMatchups
+        const weeks = [];
+        for (let week = 1; week <= data.currentWeek; week++) {
+            const weekMatchups = data.allMatchups[week];
+            if (!weekMatchups) continue;
+
+            const myMatchup = weekMatchups.find(m => m.roster_id === myRoster.roster_id);
+            if (!myMatchup) continue;
+
+            const oppMatchup = getOpponentMatchup(weekMatchups, myMatchup.matchup_id, myRoster.roster_id);
+            if (!oppMatchup) continue;
+
+            const oppOwner = getRosterOwner(leagueId, oppMatchup.roster_id);
+            const myScore = myMatchup.points || 0;
+            const oppScore = oppMatchup.points || 0;
+
+            weeks.push({
+                week,
+                result: myScore > oppScore ? 'W' : 'L',
+                score: myScore,
+                oppScore: oppScore,
+                opponent: oppOwner.team_name
+            });
+        }
 
         html += `
             <div class="season-summary">
                 <h3>${league.name}</h3>
                 <div class="record-display">
                     <div class="record-big">
-                        <span class="wins">${record.wins}</span>-<span class="losses">${record.losses}</span>
+                        <span class="wins">${wins}</span>-<span class="losses">${losses}</span>
                     </div>
                     <div class="points-summary">
-                        PF: ${record.pointsFor.toFixed(1)} | PA: ${record.pointsAgainst.toFixed(1)}
+                        PF: ${pointsFor.toFixed(1)} | PA: ${pointsAgainst.toFixed(1)}
                     </div>
                 </div>
             </div>
             <div class="matchup-card">
-                ${record.weeks.map(w => `
+                ${weeks.map(w => `
                     <div class="week-row">
                         <span class="week-num">Week ${w.week}</span>
                         <span class="week-result ${w.result === 'W' ? 'win' : 'loss'}">${w.result}</span>
-                        <span class="week-score">${w.score} - ${w.oppScore}</span>
+                        <span class="week-score">${w.score.toFixed(1)} - ${w.oppScore.toFixed(1)}</span>
                         <span class="week-opponent">vs ${w.opponent}</span>
                     </div>
                 `).join('')}
@@ -289,20 +395,65 @@ function renderSeasonRecord() {
         `;
     });
 
-    container.innerHTML = html;
+    container.innerHTML = html || '<div class="no-data">No season data found</div>';
 }
 
 function renderAllTimeRecords() {
     const container = document.getElementById('alltime-records');
 
-    // Sort by total games played
-    const sorted = [...mockData.allTimeRecords].sort((a, b) =>
-        (b.wins + b.losses) - (a.wins + a.losses)
-    );
+    // Aggregate head-to-head records across all leagues
+    const h2hRecords = {};
 
-    let html = sorted.map(record => {
+    appState.leagues.forEach(league => {
+        const leagueId = league.league_id;
+        const data = appState.leagueData[leagueId];
+        if (!data) return;
+
+        const myRoster = getMyRoster(leagueId);
+        if (!myRoster) return;
+
+        // Go through all weeks
+        for (let week = 1; week <= data.currentWeek; week++) {
+            const weekMatchups = data.allMatchups[week];
+            if (!weekMatchups) continue;
+
+            const myMatchup = weekMatchups.find(m => m.roster_id === myRoster.roster_id);
+            if (!myMatchup) continue;
+
+            const oppMatchup = getOpponentMatchup(weekMatchups, myMatchup.matchup_id, myRoster.roster_id);
+            if (!oppMatchup) continue;
+
+            const oppOwner = getRosterOwner(leagueId, oppMatchup.roster_id);
+            const myScore = myMatchup.points || 0;
+            const oppScore = oppMatchup.points || 0;
+
+            const key = oppOwner.display_name;
+            if (!h2hRecords[key]) {
+                h2hRecords[key] = { wins: 0, losses: 0, leagues: new Set() };
+            }
+
+            if (myScore > oppScore) {
+                h2hRecords[key].wins++;
+            } else {
+                h2hRecords[key].losses++;
+            }
+            h2hRecords[key].leagues.add(league.name);
+        }
+    });
+
+    // Convert to array and sort
+    const records = Object.entries(h2hRecords)
+        .map(([opponent, data]) => ({
+            opponent,
+            wins: data.wins,
+            losses: data.losses,
+            leagues: Array.from(data.leagues)
+        }))
+        .sort((a, b) => (b.wins + b.losses) - (a.wins + a.losses));
+
+    let html = records.map(record => {
         const total = record.wins + record.losses;
-        const winrate = ((record.wins / total) * 100).toFixed(0);
+        const winrate = total > 0 ? ((record.wins / total) * 100).toFixed(0) : 0;
 
         let statusClass = 'even';
         if (winrate >= 55) statusClass = 'dominating';
@@ -324,7 +475,7 @@ function renderAllTimeRecords() {
         `;
     }).join('');
 
-    container.innerHTML = html;
+    container.innerHTML = html || '<div class="no-data">No rivalry data found</div>';
 }
 
 // ============================================
@@ -347,26 +498,19 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        currentView = btn.dataset.view;
+        appState.currentView = btn.dataset.view;
         renderCurrentMatchups();
     });
 });
 
 // League selector
 document.getElementById('league-selector').addEventListener('change', (e) => {
-    selectedLeague = e.target.value;
-    renderCurrentMatchups();
-    renderSeasonRecord();
+    appState.selectedLeague = e.target.value;
+    renderAll();
 });
 
 // ============================================
 // INIT
 // ============================================
 
-function init() {
-    renderCurrentMatchups();
-    renderSeasonRecord();
-    renderAllTimeRecords();
-}
-
-init();
+loadAllData();

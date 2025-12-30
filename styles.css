@@ -365,3 +365,44 @@ main {
 .rival-card.even {
     border-left: 3px solid #ff9800;
 }
+
+/* Loading & Error States */
+.loading {
+    text-align: center;
+    padding: 3rem;
+    color: #888;
+    font-size: 1.1rem;
+}
+
+.loading::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    border: 3px solid #2a2a4a;
+    border-top-color: #5c6bc0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error {
+    text-align: center;
+    padding: 3rem;
+    color: #f44336;
+    font-size: 1.1rem;
+    background-color: rgba(244, 67, 54, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.no-data {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-style: italic;
+}
